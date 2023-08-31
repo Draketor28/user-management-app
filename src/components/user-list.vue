@@ -86,12 +86,12 @@ export default {
     const fetchUsers = async () => {
       const snapshot = await db.collection('users').get();
       users.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      console.log(users);
       isLoading.value = false;
     };
 
     const deleteUserData = async (userId) => {
       await db.collection('users').doc(userId).delete();
-      // Fetch updated data after deletion
       await fetchUsers();
       closeDeleteModal();
       alert('User deleted successfully!');
@@ -129,6 +129,7 @@ export default {
           name: editedUser.value.name,
           email: editedUser.value.email,
         });
+        await fetchUsers();
         isEditModalOpen.value = false;
         alert('User updated successfully!');
       }
