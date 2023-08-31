@@ -150,7 +150,3 @@ export default {
   },
 };
 </script>
-
-<style>
-/* Add any additional Tailwind CSS classes here */
-</style>
